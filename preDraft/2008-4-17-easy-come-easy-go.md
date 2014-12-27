@@ -4,4 +4,5 @@ Why did the music stop? When did the music stop? Sooner or later people start as
 
 Enter text in [Markdown](http://daringfireball.net/projects/markdown/). Use the toolbar above, or click the **?** button for formatting help.
 
-![We see this.](/http://images.wondershare.de/screenshot/screenshots-mit-seinem-mac-9.jpg)
+![We see this.](/http://bicyclelab.com/wp-content/uploads/custom-bike-pic.png)
+
