@@ -6,3 +6,10 @@ Enter text in [Markdown](http://daringfireball.net/projects/markdown/). Use the 
 
 ![We see this.](/http://bicyclelab.com/wp-content/uploads/custom-bike-pic.png)
 
+- item
+- item
+- item
+
+> this still feels like yesterday. 
+> we haven't yet seen the end of it.
+
