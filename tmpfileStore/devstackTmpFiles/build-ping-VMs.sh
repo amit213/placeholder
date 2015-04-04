@@ -18,7 +18,7 @@ cd
 cd devstack
 source openrc admin admin
 
-#creat basic tmpbox flavors
+#create basic tmpbox flavors
 nova flavor-create m1.tmpbox auto 512 4 1
 nova flavor-create m1.tmpbox2 auto 1024 10 1
 
