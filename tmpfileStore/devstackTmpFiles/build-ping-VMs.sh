@@ -36,6 +36,6 @@ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 cd
 cd ~/devstack
-nova boot --image trustyUbun --flavor m1.tmpbox --key-name $sshKeyName  worker10
+#nova boot --image trustyUbun --flavor m1.tmpbox --key-name $sshKeyName  worker10
 
 
