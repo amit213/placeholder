@@ -27,7 +27,7 @@ glance image-create --name "trustyUbun" --disk-format qcow2 --file ./trusty-serv
 mkdir ~/$sshDir
 cd ~/$sshDir
 ssh-keygen -t rsa -f $sshKeyName -N ""
-nova keypair-add --pub-key ~/$sshDir/$sshKeyName.pub testKeys
+nova keypair-add --pub-key ~/$sshDir/$sshKeyName.pub $sshKeyName
 neutron subnet-update  --dns-nameserver 8.8.8.8 private-subnet --dns-nameserver 8.8.4.4
 
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
