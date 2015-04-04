@@ -7,7 +7,7 @@
 
 tmpFilePath="tmpFiles"
 sshDir=".ssh"
-sshKeyName="testKeysforVM"
+sshKeyName="id_rsa"
 devstackDir="devstack"
 
 run_common_housekeeping() {
@@ -46,7 +46,7 @@ neutron security-group-rule-create --protocol icmp --direction ingress default
 neutron security-group-rule-create --protocol tcp --port-range-min 22 --port-range-max 22 --direction ingress default
 
 cd
-cd ~/devstack
+cd ~/$devstackDir
 #nova boot --image trustyUbun --flavor m1.tmpbox --key-name $sshKeyName  worker10
 
 
