@@ -31,10 +31,11 @@ ssh-keygen -t rsa -f $sshKeyName -N ""
 neutron subnet-update  --dns-nameserver 8.8.8.8 private-subnet --dns-nameserver 8.8.4.4
 
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-neutron security-group-rule-create --protocol icmp --direction ingress default
-neutron security-group-rule-create --protocol tcp --port-range-min 22 --port-range-max 22 --direction ingress default
+#neutron security-group-rule-create --protocol icmp --direction ingress default
+#neutron security-group-rule-create --protocol tcp --port-range-min 22 --port-range-max 22 --direction ingress default
 
-
+cd
+cd ~/devstack
 nova boot --image trustyUbun --flavor m1.tmpbox --key-name $sshKeyName  worker10
 
 
