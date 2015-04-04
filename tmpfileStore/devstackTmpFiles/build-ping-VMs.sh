@@ -9,6 +9,10 @@ tmpFilePath="tmpFiles"
 sshDir=".ssh"
 sshKeyName="testKeysforVM"
 
+run_common_housekeeping() {
+   nova keypair-add --pub-key ~/$sshDir/$sshKeyName.pub $sshKeyName	
+}
+
 cd
 cd devstack
 source openrc admin admin
@@ -27,7 +31,13 @@ glance image-create --name "trustyUbun" --disk-format qcow2 --file ./trusty-serv
 mkdir ~/$sshDir
 cd ~/$sshDir
 ssh-keygen -t rsa -f $sshKeyName -N ""
-nova keypair-add --pub-key ~/$sshDir/$sshKeyName.pub $sshKeyName
+
+run_common_housekeeping
+
+source openrc demo demo
+
+run_common_housekeeping
+
 neutron subnet-update  --dns-nameserver 8.8.8.8 private-subnet --dns-nameserver 8.8.4.4
 
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
