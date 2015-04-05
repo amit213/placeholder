@@ -59,7 +59,7 @@ add_custom_falvors() {
 create_new_tenant() {
   newtenantName="prod"
   newuserName="prod"
-  newuserPass="prod"
+  newuserPass="nova"
   subnetValue="10.30.0.0/24"
   networkName="net_$newtenantName"
   subnetName="subnet_$newtenantName"
@@ -86,9 +86,17 @@ create_new_tenant() {
   public_netID=$(neutron net-list | grep public | awk '{print $2;}')
   subnet_ID=$(neutron subnet-list | grep $subnetName | awk '{print $2;}')
   router_ID=$(neutron router-list | grep $routerName | awk '{print $2;}')
+  default_secgroup_ID=$(nova secgroup-list | grep default | awk '{print $2;}')
+  newtenantNetwork_ID=$(nova network-list | grep $networkName | awk '{print $2;}')
 
   neutron router-gateway-set $router_ID $public_netID
   neutron router-interface-add $router_ID $subnet_ID
+
+  neutron security-group-rule-create --protocol icmp --direction ingress --remote-ip-prefix 0.0.0.0/0 $default_secgroup_ID
+  neutron security-group-rule-create --protocol tcp --direction ingress --port-range-min 22 --port-range-max 22 --remote-ip-prefix 0.0.0.0/0 $default_secgroup_ID
+
+  nova boot --image trustyUbun --flavor m1.tmpbox --key-name id_rsa prodBox101 --poll --nic net-id=$newtenantNetwork_ID
+
 
 }
 
