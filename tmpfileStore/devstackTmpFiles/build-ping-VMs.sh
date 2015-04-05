@@ -16,8 +16,12 @@ create_keypair_files() {
   ssh-keygen -t rsa -f $sshKeyName -N ""
 }
 
+add_keypair_to_nova() {
+  nova keypair-add --pub-key ~/$sshDir/$sshKeyName.pub $sshKeyName 
+}
+
 run_common_housekeeping() {
-  nova keypair-add --pub-key ~/$sshDir/$sshKeyName.pub $sshKeyName	
+  add_keypair_to_nova
 }
 
 add_images_to_glance() {
@@ -50,6 +54,42 @@ add_custom_falvors() {
   #create basic tmpbox flavors
   nova flavor-create m1.tmpbox auto 512 8 1
   nova flavor-create m1.tmpbox2 auto 1024 12 1 
+}
+
+create_new_tenant() {
+  newtenantName="prod"
+  newuserName="prod"
+  newuserPass="prod"
+  subnetValue="10.30.0.0/24"
+  networkName="net_$newtenantName"
+  subnetName="subnet_$newtenantName"
+  routerName="router_$newtenantName"
+  source ~/devstack/openrc admin admin
+  keystone tenant-create --name $newtenantName
+  keystone user-create --name $newuserName --pass $newuserPass --tenant $newtenantName
+  keystone user-role-add --user $newuserName --role admin --tenant $newtenantName
+  keystone user-role-add --user $newuserName --role Member --tenant $newtenantName
+  keystone user-role-add --user $newuserName --role heat_stack_owner --tenant $newtenantName
+  keystone user-role-add --user $newuserName --role _member_ --tenant $newtenantName
+
+  export OS_USERNAME=$newuserName
+  export OS_TENANT_NAME=$newtenantName
+  export OS_PASSWORD=$newuserPass
+  export OS_AUTH_URL=http://localhost:5000/v2.0/
+
+  add_keypair_to_nova
+
+  neutron net-create $networkName
+  neutron subnet-create $networkName $subnetValue --name $subnetName
+
+  neutron router-create $routerName
+  public_netID=$(neutron net-list | grep public | awk '{print $2;}')
+  subnet_ID=$(neutron subnet-list | grep $subnetName | awk '{print $2;}')
+  router_ID=$(neutron router-list | grep $routerName | awk '{print $2;}')
+
+  neutron router-gateway-set $router_ID $public_netID
+  neutron router-interface-add $router_ID $subnet_ID
+
 }
 
 cd
