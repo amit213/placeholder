@@ -118,6 +118,8 @@ create_subnet_config
 
 add_rules_to_secgroup
 
+create_new_tenant
+
 cd
 cd ~/$devstackDir
 #nova boot --image trustyUbun --flavor m1.tmpbox --key-name $sshKeyName  worker10
