@@ -95,7 +95,7 @@ create_new_tenant() {
   neutron security-group-rule-create --protocol icmp --direction ingress --remote-ip-prefix 0.0.0.0/0 $default_secgroup_ID
   neutron security-group-rule-create --protocol tcp --direction ingress --port-range-min 22 --port-range-max 22 --remote-ip-prefix 0.0.0.0/0 $default_secgroup_ID
 
-  nova boot --image trustyUbun --flavor m1.tmpbox --key-name id_rsa prodBox101 --poll --nic net-id=$newtenantNetwork_ID
+  #nova boot --image trustyUbun --flavor m1.tmpbox --key-name id_rsa prodBox101 --poll --nic net-id=$newtenantNetwork_ID
 
 
 }
