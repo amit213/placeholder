@@ -42,10 +42,10 @@ enable_service cinder c-bak
 
 ###Enable Heat
 enable_service heat h-api h-api-cfn h-api-cw h-eng
-HEAT_STANDALONE=True
+#HEAT_STANDALONE=True
 
 # enabled service for murano
 #ENABLED_SERVICES+=,murano,murano-api,murano-engine
-enable_service murano murano-api murano-engine
+#enable_service murano murano-api murano-engine
 
 
