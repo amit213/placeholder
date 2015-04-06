@@ -37,11 +37,15 @@ enable_service trove tr-api tr-tmgr tr-cond
 enable_service ceilometer-acompute ceilometer-acentral ceilometer-anotification ceilometer-collector ceilometer-api
 
 # Cinder - Block Device Service
-ENABLED_SERVICES+=,cinder,c-bak
+#ENABLED_SERVICES+=,cinder,c-bak
+enable_service cinder c-bak
 
 ###Enable Heat
 enable_service heat h-api h-api-cfn h-api-cw h-eng
 HEAT_STANDALONE=True
 
 # enabled service for murano
-ENABLED_SERVICES+=,murano,murano-api,murano-engine
+#ENABLED_SERVICES+=,murano,murano-api,murano-engine
+enable_service murano murano-api murano-engine
+
+
