@@ -11,7 +11,7 @@ enable_service s-proxy s-object s-container s-account
 
 
 ###Enable Neutron
-disable_service n-net
+#disable_service n-net
 enable_service q-svc
 enable_service q-agt
 enable_service q-dhcp
@@ -23,4 +23,4 @@ enable_service q-metering
 enable_service heat h-api h-api-cfn h-api-cw h-eng
 
 # Enable Murano
-enable_service murano murano-api murano-engine
+#enable_service murano murano-api murano-engine
