@@ -30,13 +30,13 @@ add_images_to_glance() {
   #glance image-create --name "trustyUbun" --disk-format qcow2 --file ./trusty-server-cloudimg-amd64-disk1.img --container-format bare --is-public True
   glance image-create --name "trustyUbun" --disk-format qcow2 --copy-from http://uec-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img --container-format bare --is-public True --property hw_watchdog_action=reset
 
-  glance image-create --name "centOS7genericCloudx86_64" --disk-format qcow2 --container-format bare --is-public true --copy-from http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-20140929_01.qcow2 --property hw_watchdog_action=reset
+  #glance image-create --name "centOS7genericCloudx86_64" --disk-format qcow2 --container-format bare --is-public true --copy-from http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-20140929_01.qcow2 --property hw_watchdog_action=reset
 
   #cd /tmp/
-  wget http://stable.release.core-os.net/amd64-usr/current/coreos_production_openstack_image.img.bz2
-  bunzip2 coreos_production_openstack_image.img.bz2
-  glance image-create --name "coreOS" --container-format bare --disk-format qcow2 --file ./coreos_production_openstack_image.img --is-public True --property hw_watchdog_action=reset
-  glance image-create --name "fedora21cloud" --disk-format qcow2 --container-format bare --is-public true --copy-from http://download.fedoraproject.org/pub/fedora/linux/releases/21/Cloud/Images/x86_64/Fedora-Cloud-Base-20141203-21.x86_64.qcow2 --property hw_watchdog_action=reset
+  #wget http://stable.release.core-os.net/amd64-usr/current/coreos_production_openstack_image.img.bz2
+  #bunzip2 coreos_production_openstack_image.img.bz2
+  #glance image-create --name "coreOS" --container-format bare --disk-format qcow2 --file ./coreos_production_openstack_image.img --is-public True --property hw_watchdog_action=reset
+  #glance image-create --name "fedora21cloud" --disk-format qcow2 --container-format bare --is-public true --copy-from http://download.fedoraproject.org/pub/fedora/linux/releases/21/Cloud/Images/x86_64/Fedora-Cloud-Base-20141203-21.x86_64.qcow2 --property hw_watchdog_action=reset
   glance image-create --name "centOS7" --disk-format qcow2 --container-format bare --is-public true --copy-from http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-20140929_01.qcow2 --property hw_watchdog_action=reset
 }
 
