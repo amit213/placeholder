@@ -6,3 +6,21 @@ SERVICE_PASSWORD=nova
 ADMIN_PASSWORD=nova
 SWIFT_HASH=nova
 
+###Enable Swift
+enable_service s-proxy s-object s-container s-account
+
+
+###Enable Neutron
+disable_service n-net
+enable_service q-svc
+enable_service q-agt
+enable_service q-dhcp
+enable_service q-l3
+enable_service q-meta
+enable_service q-metering
+
+###Enable Heat
+enable_service heat h-api h-api-cfn h-api-cw h-eng
+
+# Enable Murano
+enable_service murano murano-api murano-engine
